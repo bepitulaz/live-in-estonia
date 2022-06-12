@@ -1,6 +1,7 @@
 import _ from "lodash";
 import Image from "next/image";
 import Link from "next/link";
+import Head from "next/head";
 import { Row, Col, Button } from "react-bootstrap";
 import BaseLayout from "../../components/BaseLayout";
 import { getSortedImages } from "../../utils/utils";
@@ -48,25 +49,58 @@ export async function getStaticProps({ params }) {
 export default function Photo({ post, nextHref, prevHref }) {
   return (
     <BaseLayout>
+      <Head>
+        <title>Home | Live In Estonia</title>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content={post?.altText} />
+        <meta property="og:type" content="website" />
+        <meta name="og:title" property="og:title" content="Live In Estonia" />
+        <meta
+          name="og:description"
+          property="og:description"
+          content={post?.altText}
+        />
+        <meta property="og:site_name" content="Live In Estonia" />
+        <meta
+          property="og:url"
+          content={`https://www.liveinestonia.com${post?.detailHref}`}
+        />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="Live In Estonia" />
+        <meta name="twitter:description" content={post?.altText} />
+        <meta name="twitter:site" content="@liveinestonia" />
+        <meta name="twitter:creator" content="@liveinestonia" />
+        <meta name="msapplication-TileColor" content="#da532c" />
+        <meta name="theme-color" content="#ffffff" />
+        <meta property="og:image" content={post?.imageUrl} />
+        <meta name="twitter:image" content={post?.imageUrl} />
+        <link
+          rel="canonical"
+          href={`https://www.liveinestonia.com${post?.detailHref}`}
+        />
+      </Head>
       <Row className="mt-5">
         <Col lg={{ span: 6, offset: 3 }}>
           <article>
             <Image
-              src={post.imageUrl}
-              alt={post.altText}
-              width={post.width}
-              height={post.height}
+              src={post?.imageUrl}
+              alt={post?.altText}
+              width={post?.width}
+              height={post?.height}
             />
-            {!_.isEmpty(post.altText) && (
+            {!_.isEmpty(post?.altText) && (
               <section className="mt-3 description">
-                <p>{post.altText}</p>
+                <p>{post?.altText}</p>
               </section>
             )}
 
             <section className="d-flex justify-content-between mt-5">
               <div>
                 {_.isEmpty(prevHref) ? (
-                  <Button disabled variant="outline-dark">No previous post</Button>
+                  <Button disabled variant="outline-dark">
+                    No previous post
+                  </Button>
                 ) : (
                   <Link href={prevHref} passHref>
                     <Button variant="outline-dark">Previous post</Button>
@@ -75,7 +109,9 @@ export default function Photo({ post, nextHref, prevHref }) {
               </div>
               <div>
                 {_.isEmpty(nextHref) ? (
-                  <Button disabled variant="outline-dark">No following post</Button>
+                  <Button disabled variant="outline-dark">
+                    No following post
+                  </Button>
                 ) : (
                   <Link href={nextHref} passHref>
                     <Button variant="outline-dark">Next post</Button>

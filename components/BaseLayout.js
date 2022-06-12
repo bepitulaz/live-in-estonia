@@ -20,7 +20,7 @@ export default function BaseLayout({ children }) {
       <main>
         <Container>{children}</Container>
       </main>
-      <footer>
+      <footer className="mt-5">
         <Row>
           <Col>
             <div className="pt-3 mt-3 copyright-section">
