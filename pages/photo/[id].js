@@ -16,8 +16,10 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const { id } = params;
+  
   const data = await getSortedImages();
-  const currentIndex = _.findIndex(data, { id: parseInt(id) });
+
+  const currentIndex = _.findIndex(data, { id: id });
 
   const getPrevHref = () => {
     const prevIndex = currentIndex - 1;
@@ -39,7 +41,7 @@ export async function getStaticProps({ params }) {
 
   return {
     props: {
-      post: _.find(data, { id: parseInt(id) }),
+      post: _.find(data, { id: id }),
       nextHref: getNextHref(),
       prevHref: getPrevHref(),
     },
