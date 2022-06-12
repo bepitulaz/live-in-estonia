@@ -1,16 +1,46 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+.my-masonry-grid {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin-left: -30px;
+    width: auto;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+.my-masonry-grid_column {
+    padding-left: 30px;
+    background-clip: padding-box;
 }
 
-* {
-  box-sizing: border-box;
+.my-masonry-grid_column>div {
+    background: yellow;
+    margin-bottom: 30px;
+}
+
+.card-custom {
+    border: none;
+}
+
+.card-custom img {
+    border-radius: 1rem;
+}
+
+.brand-title {
+    font-family: 'Caveat', cursive;
+}
+
+.copyright-section {
+    border-top: 1px solid #fff;
+}
+
+.copyright-section p {
+    font-size: 0.8rem;
+}
+
+article .description p {
+    font-family: 'Source Serif Pro', serif;
+    font-size: 1.3rem;
+}
+
+header h3 {
+    font-family: 'Source Serif Pro', serif;
 }
