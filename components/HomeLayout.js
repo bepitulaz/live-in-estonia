@@ -25,13 +25,15 @@ export default function HomeLayout({ children }) {
       </header>
       <main>
         <Row>
-          <Masonry
-            breakpointCols={BREAKPOINTS_COLUMNS}
-            className="my-masonry-grid"
-            columnClassName="my-masonry-grid_column"
-          >
-            {children}
-          </Masonry>
+          <Col>
+            <Masonry
+              breakpointCols={BREAKPOINTS_COLUMNS}
+              className="my-masonry-grid"
+              columnClassName="my-masonry-grid_column"
+            >
+              {children}
+            </Masonry>
+          </Col>
         </Row>
       </main>
       <footer className="mt-5">

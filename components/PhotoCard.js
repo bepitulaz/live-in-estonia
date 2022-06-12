@@ -1,10 +1,9 @@
-import { Col, Card } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function PhotoCard({ post }) {
   return (
-    <Col>
       <Card className="card-custom">
         <Card.Body className="p-0">
           <Link href={post.detailHref} passHref>
@@ -19,6 +18,5 @@ export default function PhotoCard({ post }) {
           </Link>
         </Card.Body>
       </Card>
-    </Col>
   );
 }
