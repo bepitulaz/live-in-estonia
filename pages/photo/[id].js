@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Head from "next/head";
 import { Row, Col, Button } from "react-bootstrap";
+import { Camera2 } from "react-bootstrap-icons";
 import BaseLayout from "../../components/BaseLayout";
 import { getSortedImages } from "../../utils/utils";
 
@@ -115,6 +116,22 @@ export default function Photo({ post, nextHref, prevHref }) {
                 <p>{post?.altText}</p>
               </section>
             )}
+
+            <section className="mt-3 camera-info">
+              <p className="text-secondary">
+                <Camera2 size={19} />
+                {" "}
+                {post?.cameraInfo?.cameraMake} {post?.cameraInfo?.cameraModel}
+                <br />
+                ƒ/{post?.cameraInfo?.apertureFNumber}
+                {" "}
+                {post?.cameraInfo?.exposureTime}
+                {" "}
+                {`${post?.cameraInfo?.focalLength}mm`}
+                {" "}
+                {`ISO${post?.cameraInfo?.isoEquivalent}`}
+              </p>
+            </section>
 
             <section className="d-flex justify-content-between mt-5">
               <div>

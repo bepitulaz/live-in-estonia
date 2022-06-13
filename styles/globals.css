@@ -36,6 +36,10 @@
     font-size: 0.8rem;
 }
 
+.camera-info {
+    font-size: 0.9rem;
+}
+
 article .description p {
     font-family: 'Source Serif Pro', serif;
     font-size: 1.3rem;
