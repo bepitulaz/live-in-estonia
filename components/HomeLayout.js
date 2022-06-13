@@ -43,7 +43,7 @@ export default function HomeLayout({ children }) {
               <p className="text-center fw-light">
                 A project by{" "}
                 <a
-                  href="https://www.asepbagja.com"
+                  href="https://profile.asepbagja.com"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-dark fw-bold"

@@ -1,6 +1,6 @@
 # Live In Estonia 🇪🇪
 
-This repository contains the source code of [liveinestonia.com](https://www.liveinestonia.com), a photo blog project about living in Estonia by [Asep Bagja Priandana](https://www.asepbagja.com).
+This repository contains the source code of [liveinestonia.com](https://www.liveinestonia.com), a photo blog project about living in Estonia by [Asep Bagja Priandana](https://profile.asepbagja.com).
 
 You can fork and use the source code for your photo blog too.
 
