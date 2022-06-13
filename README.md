@@ -25,6 +25,7 @@ Before using this project, you must have a Google Photos account.
 5. Put it in `.env` file (don't forget to rename it from `.env.example`).
 
 > **Note**
+>
 > There is no easy way to get the album ID without writing a code to fetch [this endpoint](https://developers.google.com/photos/library/guides/list#listing-albums).
 
 ### 2. Preparing Google OAuth credential
@@ -32,6 +33,7 @@ Before using this project, you must have a Google Photos account.
 You can follow the guide from Google about how to get the access credential from Google Cloud Platform: [the guide](https://developers.google.com/workspace/guides/create-credentials).
 
 > **Note**
+>
 > When creating the credential choose "Desktop application" instead of "Web application".
 
 Download `google-secret.json` file from this process, and put it in the root of this repository.
@@ -46,6 +48,10 @@ This project is using Static Site Generator feature of Next.js. Thus, we need to
 ### 4. Running the project on your local machine
 
 You can run it by using `yarn dev` command.
+
+## Future plan
+
+Enhance `yarn get-photos` command to get the `album ID` easily without put it inside `.env` file.
 
 ## License
 
