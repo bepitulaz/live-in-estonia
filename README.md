@@ -1,34 +1,54 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Live In Estonia 🇪🇪
 
-## Getting Started
+This repository contains the source code of [liveinestonia.com](https://www.liveinestonia.com), a photo blog project about living in Estonia by [Asep Bagja Priandana](https://www.asepbagja.com).
 
-First, run the development server:
+You can fork and use the source code for your photo blog too.
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+## Tech stack
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Google Photos as a content management system.
+- Next.js as a static site generator
+- Node.js version >= 16 
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+You can deploy it anywhere. Live In Estonia is deployed on [Vercel](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme).
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## How to use this project
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Before using this project, you must have a Google Photos account.
 
-## Learn More
+### 1. Preparing Google Photos as CMS
 
-To learn more about Next.js, take a look at the following resources:
+1. Create an album.
+2. Upload all your photos to that newly created album.
+3. You can put the description of the photo from Info menu.
+4. Get the ID for that album.
+5. Put it in `.env` file (don't forget to rename it from `.env.example`).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+> **Note**
+> There is no easy way to get the album ID without writing a code to fetch [this endpoint](https://developers.google.com/photos/library/guides/list#listing-albums).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### 2. Preparing Google OAuth credential
 
-## Deploy on Vercel
+You can follow the guide from Google about how to get the access credential from Google Cloud Platform: [the guide](https://developers.google.com/workspace/guides/create-credentials).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+> **Note**
+> When creating the credential choose "Desktop application" instead of "Web application".
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Download `google-secret.json` file from this process, and put it in the root of this repository.
+
+### 3. Fetching all photos
+
+This project is using Static Site Generator feature of Next.js. Thus, we need to prepare the data before building Next.js
+
+1. Fetch all photos from Google Photos by running `yarn get-photos`. Follow the authentication process that happens when you run that CLI command.
+2. After the process is completed, you will have `posts.json` file inside `data` directory.
+
+### 4. Running the project on your local machine
+
+You can run it by using `yarn dev` command.
+
+## License
+
+This project is licensed under MIT, you can use it freely and as it is.
+
+Happy photo blogging! 📸😄
