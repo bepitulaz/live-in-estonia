@@ -16,18 +16,24 @@ const albumId = process.env.ALBUM_ID;
 
 async function generateDataFromGooglePhotos(albumId) {
   let result = [];
+  let accessToken = "";
   try {
     // get authenticated oAuth2 client
     const oAuth2Client = await googleAuth.generateOAuthClient(secrets, scopes);
     debug("oAuthClient received, getting events....");
-
+    
+    accessToken = oAuth2Client?.credentials?.access_token;
+    if (Date.now() > oAuth2Client?.credentials?.expiry_date) {
+      accessToken = await googleAuth.getAccessTokenFromRefreshToken(oAuth2Client, secrets);
+    }
+    
     // get the content of my album
-    const accessToken = `Bearer ${oAuth2Client?.credentials?.access_token}`;
+    const bearer = `Bearer ${accessToken}`;
     const apiUrl = "/v1/mediaItems:search";
     const instance = axios.create({
       baseURL: "https://photoslibrary.googleapis.com/",
       timeout: 10000,
-      headers: { Authorization: accessToken },
+      headers: { Authorization: bearer },
     });
     const response = await instance.post(apiUrl, {
       pageSize: "100",
@@ -35,9 +41,8 @@ async function generateDataFromGooglePhotos(albumId) {
     });
     result = response.data.mediaItems;
   } catch (err) {
-    console.log("ERROR: " + err);
+    console.error("ERROR: ", err.message);
   }
-
   return result;
 }
 

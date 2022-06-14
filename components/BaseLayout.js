@@ -34,7 +34,17 @@ export default function BaseLayout({ children }) {
                 >
                   Asep Bagja Priandana
                 </a>{" "}
-                &copy; {date.getFullYear()}
+                &copy; {date.getFullYear()}.
+                <br />
+                See the statistic of this site in {" "}
+                <a
+                  href="https://plausible.io/liveinestonia.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-dark fw-bold"
+                >
+                  Plausible dashboard.
+                </a>
               </p>
             </div>
           </Col>

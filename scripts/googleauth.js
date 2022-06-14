@@ -3,13 +3,14 @@
  *
  * Generates an OAuthClient to be used by an API service.
  * Requires path to file that contains clientId/clientSecret and scopes.
- * 
+ *
  * This lib taken from: https://github.com/uF4No/gcal-event-finder/blob/master/src/googleAuth.js
+ * And, I modify a bit to get the access_token from refresh_token.
  */
 
 const { google } = require("googleapis");
 const fs = require("fs");
-
+const axios = require("axios");
 const inquirer = require("inquirer");
 
 const debug = require("debug")("gphotos:googleAuth");
@@ -88,4 +89,23 @@ async function getAccessToken(oAuth2Client, scopes) {
   return Promise.resolve(oAuth2Client);
 }
 
-module.exports = { generateOAuthClient };
+/**
+ * Exchange refresh_token for the new access_token, so we don't need
+ * do the authorization multiple times.
+ * @param {google.auth.OAuth2} oAuth2Client
+ * @param {object} secrets Object with client_id, project_id, client_secret...
+ * @returns strings of new access_token
+ */
+async function getAccessTokenFromRefreshToken(oAuth2Client, secrets) {
+  const { client_secret, client_id } = secrets.installed;
+  const response = await axios.post("https://oauth2.googleapis.com/token", {
+    client_id,
+    client_secret,
+    refresh_token: oAuth2Client?.credentials?.refresh_token,
+    grant_type: "refresh_token",
+  });
+
+  return Promise.resolve(response.data.access_token);
+}
+
+module.exports = { generateOAuthClient, getAccessTokenFromRefreshToken };
