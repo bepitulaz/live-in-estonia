@@ -11,8 +11,8 @@ export default function PhotoCard({ post }) {
               <Image
                 src={post.imageUrl}
                 alt={post.altText}
-                width={post.width}
-                height={post.height}
+                width={post.width / 2}
+                height={post.height / 2}
               />
             </a>
           </Link>
