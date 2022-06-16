@@ -1,5 +1,6 @@
 import { Container, Row, Col } from "react-bootstrap";
 import Masonry from "react-masonry-css";
+import Footer from "./Footer";
 
 const BREAKPOINTS_COLUMNS = {
   default: 4,
@@ -9,8 +10,6 @@ const BREAKPOINTS_COLUMNS = {
 };
 
 export default function HomeLayout({ children }) {
-  const date = new Date();
-
   return (
     <Container>
       <header>
@@ -36,36 +35,7 @@ export default function HomeLayout({ children }) {
           </Col>
         </Row>
       </main>
-      <footer className="mt-5">
-        <Row>
-          <Col>
-            <div className="pt-3 mt-3 copyright-section">
-              <p className="text-center fw-light">
-                A project by{" "}
-                <a
-                  href="https://profile.asepbagja.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-dark fw-bold"
-                >
-                  Asep Bagja Priandana
-                </a>{" "}
-                &copy; {date.getFullYear()}.
-                <br />
-                See the statistic of this site in {" "}
-                <a
-                  href="https://plausible.io/liveinestonia.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-dark fw-bold"
-                >
-                  Plausible dashboard.
-                </a>
-              </p>
-            </div>
-          </Col>
-        </Row>
-      </footer>
+      <Footer />
     </Container>
   );
 }

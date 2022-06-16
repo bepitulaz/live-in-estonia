@@ -1,9 +1,8 @@
 import Link from "next/link";
-import { Container, Navbar, Row, Col } from "react-bootstrap";
+import { Container, Navbar } from "react-bootstrap";
+import Footer from "./Footer";
 
 export default function BaseLayout({ children }) {
-  const date = new Date();
-
   return (
     <>
       <header>
@@ -20,36 +19,7 @@ export default function BaseLayout({ children }) {
       <main>
         <Container>{children}</Container>
       </main>
-      <footer className="mt-5">
-        <Row>
-          <Col>
-            <div className="pt-3 mt-3 copyright-section">
-              <p className="text-center fw-light">
-                A project by{" "}
-                <a
-                  href="https://profile.asepbagja.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-dark fw-bold"
-                >
-                  Asep Bagja Priandana
-                </a>{" "}
-                &copy; {date.getFullYear()}.
-                <br />
-                See the statistic of this site in {" "}
-                <a
-                  href="https://plausible.io/liveinestonia.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-dark fw-bold"
-                >
-                  Plausible dashboard.
-                </a>
-              </p>
-            </div>
-          </Col>
-        </Row>
-      </footer>
+      <Footer />
     </>
   );
 }

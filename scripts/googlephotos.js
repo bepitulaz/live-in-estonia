@@ -54,6 +54,7 @@ function mapGooglePhotosMedia(photos) {
       width: photo.mediaMetadata.width,
       height: photo.mediaMetadata.height,
       date: photo.mediaMetadata.creationTime,
+      lastUpdateDate: new Date().toISOString(),
       altText: isEmpty(photo.description)
         ? "No description yet."
         : photo.description,
