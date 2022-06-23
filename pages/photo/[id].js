@@ -76,8 +76,8 @@ export default function Photo({ post, nextHref, prevHref }) {
         <meta name="twitter:creator" content="@liveinestonia" />
         <meta name="msapplication-TileColor" content="#da532c" />
         <meta name="theme-color" content="#ffffff" />
-        <meta property="og:image" content={post?.imageUrl} />
-        <meta name="twitter:image" content={post?.imageUrl} />
+        <meta property="og:image" content={post?.imageMetaUrl} />
+        <meta name="twitter:image" content={post?.imageMetaUrl} />
         <link
           rel="canonical"
           href={`https://www.liveinestonia.com${post?.detailHref}`}

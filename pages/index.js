@@ -43,8 +43,8 @@ export default function Home({ posts }) {
         <meta name="twitter:creator" content="@liveinestonia" />
         <meta name="msapplication-TileColor" content="#da532c" />
         <meta name="theme-color" content="#ffffff" />
-        <meta property="og:image" content={posts[0].imageUrl} />
-        <meta name="twitter:image" content={posts[0].imageUrl} />
+        <meta property="og:image" content={posts[0].imageMetaUrl} />
+        <meta name="twitter:image" content={posts[0].imageMetaUrl} />
         <link rel="canonical" href="https://www.liveinestonia.com" />
 
         <link
