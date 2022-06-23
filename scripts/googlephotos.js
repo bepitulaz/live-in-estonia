@@ -21,12 +21,15 @@ async function generateDataFromGooglePhotos(albumId) {
     // get authenticated oAuth2 client
     const oAuth2Client = await googleAuth.generateOAuthClient(secrets, scopes);
     debug("oAuthClient received, getting events....");
-    
+
     accessToken = oAuth2Client?.credentials?.access_token;
     if (Date.now() > oAuth2Client?.credentials?.expiry_date) {
-      accessToken = await googleAuth.getAccessTokenFromRefreshToken(oAuth2Client, secrets);
+      accessToken = await googleAuth.getAccessTokenFromRefreshToken(
+        oAuth2Client,
+        secrets
+      );
     }
-    
+
     // get the content of my album
     const bearer = `Bearer ${accessToken}`;
     const apiUrl = "/v1/mediaItems:search";
@@ -46,11 +49,17 @@ async function generateDataFromGooglePhotos(albumId) {
   return result;
 }
 
-function mapGooglePhotosMedia(photos) {
-  const result = photos.map((photo) => {
+async function mapGooglePhotosMedia(photos) {
+  const result = await Promise.all(photos.map(async (photo) => {
+    // Download the image from Google Photos to Next.js public folder.
+    // We need to do that because Google Photos url always throw 403 after several days.
+    const googleUrl = `${photo.baseUrl}=w${photo.mediaMetadata.width}-h${photo.mediaMetadata.height}-no?authuser=0`;
+    const storagePath = `public/img/${photo.id}.jpg`;
+    await downloadImage(googleUrl, storagePath);
+
     return {
       id: photo.id,
-      imageUrl: `${photo.baseUrl}=w${photo.mediaMetadata.width}-h${photo.mediaMetadata.height}-no?authuser=0`,
+      imageUrl: `/img/${photo.id}.jpg`,
       width: photo.mediaMetadata.width,
       height: photo.mediaMetadata.height,
       date: photo.mediaMetadata.creationTime,
@@ -60,14 +69,28 @@ function mapGooglePhotosMedia(photos) {
         : photo.description,
       cameraInfo: photo.mediaMetadata?.photo ?? {},
     };
-  });
+  }));
 
   return { posts: result };
 }
 
+async function downloadImage(url, filepath) {
+  const response = await axios({
+    url,
+    method: "GET",
+    responseType: "stream",
+  });
+  return new Promise((resolve, reject) => {
+    response.data
+      .pipe(fs.createWriteStream(filepath))
+      .on("error", reject)
+      .once("close", () => resolve(filepath));
+  });
+}
+
 async function main() {
   const photos = await generateDataFromGooglePhotos(albumId);
-  const mappedData = mapGooglePhotosMedia(photos);
+  const mappedData = await mapGooglePhotosMedia(photos);
   const jsonContent = JSON.stringify(mappedData);
 
   fs.writeFile("data/posts.json", jsonContent, "utf8", function (err) {
