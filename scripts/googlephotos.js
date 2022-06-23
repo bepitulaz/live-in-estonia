@@ -59,7 +59,7 @@ async function mapGooglePhotosMedia(photos) {
 
     return {
       id: photo.id,
-      imageUrl: `/img/${photo.id}.jpg`,
+      imageUrl: `https://www.liveinestonia.com/img/${photo.id}.jpg`,
       width: photo.mediaMetadata.width,
       height: photo.mediaMetadata.height,
       date: photo.mediaMetadata.creationTime,
