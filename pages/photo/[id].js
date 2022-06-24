@@ -131,6 +131,9 @@ export default function Photo({ post, nextHref, prevHref }) {
                 {" "}
                 {`ISO${post?.cameraInfo?.isoEquivalent}`}
               </p>
+              <p className="text-secondary">
+                Uploaded at: {post?.date.substring(0, 10)}
+              </p>
             </section>
 
             <section className="d-flex justify-content-between mt-5">
@@ -140,7 +143,7 @@ export default function Photo({ post, nextHref, prevHref }) {
                     No previous post
                   </Button>
                 ) : (
-                  <Link href={prevHref} passHref>
+                  <Link href={prevHref} passHref scroll={false}>
                     <Button variant="outline-dark">Previous post</Button>
                   </Link>
                 )}
@@ -151,7 +154,7 @@ export default function Photo({ post, nextHref, prevHref }) {
                     No following post
                   </Button>
                 ) : (
-                  <Link href={nextHref} passHref>
+                  <Link href={nextHref} passHref scroll={false}>
                     <Button variant="outline-dark">Next post</Button>
                   </Link>
                 )}
