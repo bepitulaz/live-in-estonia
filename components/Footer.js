@@ -11,7 +11,7 @@ export default function Footer() {
             <p className="text-center fw-light">
               A project by{" "}
               <a
-                href="https://profile.asepbagja.com"
+                href="https://ko-fi.com/asepbagja"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-dark fw-bold"
