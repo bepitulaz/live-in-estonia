@@ -143,7 +143,7 @@ export default function Photo({ post, nextHref, prevHref }) {
                     No previous post
                   </Button>
                 ) : (
-                  <Link href={prevHref} passHref scroll={false}>
+                  <Link href={prevHref} passHref scroll={false} legacyBehavior>
                     <Button variant="outline-dark">Previous post</Button>
                   </Link>
                 )}
@@ -154,7 +154,7 @@ export default function Photo({ post, nextHref, prevHref }) {
                     No following post
                   </Button>
                 ) : (
-                  <Link href={nextHref} passHref scroll={false}>
+                  <Link href={nextHref} passHref scroll={false} legacyBehavior>
                     <Button variant="outline-dark">Next post</Button>
                   </Link>
                 )}
