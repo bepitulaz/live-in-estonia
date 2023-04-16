@@ -1,5 +1,5 @@
 import _ from "lodash";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Link from "next/link";
 import Head from "next/head";
 import { Row, Col, Button } from "react-bootstrap";
