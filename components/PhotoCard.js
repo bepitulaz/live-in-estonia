@@ -1,5 +1,5 @@
 import { Card } from "react-bootstrap";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import Link from "next/link";
 
 export default function PhotoCard({ post }) {
@@ -13,8 +13,11 @@ export default function PhotoCard({ post }) {
             alt={post.altText}
             width={post.width / 2}
             height={post.height / 2}
-            layout="responsive"
-          />
+            sizes="100vw"
+            style={{
+              width: "100%",
+              height: "auto"
+            }} />
 
         </Link>
       </Card.Body>

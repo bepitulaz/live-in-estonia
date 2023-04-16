@@ -1,5 +1,5 @@
 import _ from "lodash";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import Link from "next/link";
 import Head from "next/head";
 import { Row, Col, Button } from "react-bootstrap";
@@ -110,7 +110,10 @@ export default function Photo({ post, nextHref, prevHref }) {
               alt={post?.altText}
               width={post?.width}
               height={post?.height}
-            />
+              style={{
+                maxWidth: "100%",
+                height: "auto"
+              }} />
             {!_.isEmpty(post?.altText) && (
               <section className="mt-3 description">
                 <p>{post?.altText}</p>
