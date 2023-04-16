@@ -34,3 +34,5 @@ yarn-error.log*
 # Google credentials
 google-secret.json
 token.json
+
+.yarn
