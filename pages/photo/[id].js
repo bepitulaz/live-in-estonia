@@ -17,7 +17,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const { id } = params;
-  
+
   const data = await getSortedImages();
 
   const currentIndex = _.findIndex(data, { id: id });
@@ -101,6 +101,11 @@ export default function Photo({ post, nextHref, prevHref }) {
           href="/favicon-16x16.png"
         />
         <link rel="manifest" href="/site.webmanifest" />
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6182706198952864"
+          crossorigin="anonymous"
+        ></script>
       </Head>
       <Row className="mt-5">
         <Col lg={{ span: 6, offset: 3 }}>
@@ -112,8 +117,9 @@ export default function Photo({ post, nextHref, prevHref }) {
               height={post?.height}
               style={{
                 maxWidth: "100%",
-                height: "auto"
-              }} />
+                height: "auto",
+              }}
+            />
             {!_.isEmpty(post?.altText) && (
               <section className="mt-3 description">
                 <p>{post?.altText}</p>
@@ -122,16 +128,12 @@ export default function Photo({ post, nextHref, prevHref }) {
 
             <section className="mt-3 camera-info">
               <p className="text-secondary">
-                <Camera2 size={19} />
-                {" "}
-                {post?.cameraInfo?.cameraMake} {post?.cameraInfo?.cameraModel}
+                <Camera2 size={19} /> {post?.cameraInfo?.cameraMake}{" "}
+                {post?.cameraInfo?.cameraModel}
                 <br />
-                ƒ/{post?.cameraInfo?.apertureFNumber}
-                {" "}
-                {post?.cameraInfo?.exposureTime}
-                {" "}
-                {`${post?.cameraInfo?.focalLength}mm`}
-                {" "}
+                ƒ/{post?.cameraInfo?.apertureFNumber}{" "}
+                {post?.cameraInfo?.exposureTime}{" "}
+                {`${post?.cameraInfo?.focalLength}mm`}{" "}
                 {`ISO${post?.cameraInfo?.isoEquivalent}`}
               </p>
               <p className="text-secondary">

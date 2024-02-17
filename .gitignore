@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+/live-in-estonia/node_modules
 /.pnp
 .pnp.js
 

@@ -3,7 +3,7 @@ import HomeLayout from "../components/HomeLayout";
 import PhotoCard from "../components/PhotoCard";
 import { getSortedImages } from "../utils/utils";
 
-export async function getStaticProps(context) {
+export async function getStaticProps() {
   const data = await getSortedImages();
 
   return {
@@ -43,8 +43,8 @@ export default function Home({ posts }) {
         <meta name="twitter:creator" content="@liveinestonia" />
         <meta name="msapplication-TileColor" content="#da532c" />
         <meta name="theme-color" content="#ffffff" />
-        <meta property="og:image" content={posts[0].imageMetaUrl} />
-        <meta name="twitter:image" content={posts[0].imageMetaUrl} />
+        <meta property="og:image" content={posts?.[0]?.imageMetaUrl} />
+        <meta name="twitter:image" content={posts?.[0]?.imageMetaUrl} />
         <link rel="canonical" href="https://www.liveinestonia.com" />
 
         <link
@@ -65,6 +65,11 @@ export default function Home({ posts }) {
           href="/favicon-16x16.png"
         />
         <link rel="manifest" href="/site.webmanifest" />
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6182706198952864"
+          crossorigin="anonymous"
+        ></script>
       </Head>
 
       {posts.map((post, index) => {
